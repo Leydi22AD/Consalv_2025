@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:insert = "~{cargo/templates_cargo::head}"></head>
+    <body>
+        <div th:insert ="~{cargo/templates_cargo::header}"></div>
+
+        <!-- Formulario de búsqueda -->
+       <!-- Formulario de búsqueda por sector, manzana y lote -->
+<div class="container mt-5">
+    <h2>Búsqueda de Partida</h2>
+
+    <!-- Botones para alternar entre formularios -->
+    <div class="mb-3">
+        <button class="btn btn-primary" id="btn-sector" onclick="showForm('form-sector')">Buscar por Sector</button>
+        <button class="btn btn-secondary" id="btn-partida" onclick="showForm('form-partida')">Buscar por Partida</button>
+    </div>
+
+    <!-- Formulario para buscar por sector, manzana y lote -->
+    <div id="form-sector" style="display: block;">
+        <form method="post" th:action="@{/cargo/buscar-partida}" id="search-form">
+ <div class="mb-3">
+    <label for="sector" class="form-label">Sector</label>
+    <select class="form-control" id="sector" name="sector">
+        <option value="" disabled selected>Selecciona un Sector</option>
+        <!-- Iteramos sobre la lista de sectores que pasamos al modelo -->
+        <th:block th:each="sector : ${sectoresList}">
+            <option th:value="${sector.idS}" th:text="${sector.sector}"></option>
+        </th:block>
+    </select>
+</div>
+
+            <div class="mb-3">
+                <label for="manzana" class="form-label">Manzana</label>
+                <input type="text" class="form-control" id="manzana" name="manzana" placeholder="Introduce tu Manzana">
+            </div>
+            <div class="mb-3">
+                <label for="lote" class="form-label">Lote</label>
+                <input type="text" class="form-control" id="lote" name="lote" placeholder="Introduce tu Lote">
+            </div>
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </form>
+    </div>
+
+    <!-- Formulario independiente para buscar por partida -->
+    <div id="form-partida" style="display: none;">
+        <form method="post" th:action="@{/cargo/buscar-por-partida}" id="search-by-partida-form">
+            <div class="mb-3">
+                <label for="partida" class="form-label">Partida</label>
+                <input type="text" class="form-control" id="partida" name="partida" placeholder="Introduce tu Partida" required>
+            </div>
+            <button type="submit" class="btn btn-secondary">Buscar</button>
+        </form>
+    </div>
+</div>
+
+
+
+
+        <!-- Resultados de búsqueda -->
+        <div class="container mt-5 top-50 start-50 text-center">
+            
+       
+            <h2>Resultados de la Búsqueda</h2>
+
+           
+
+            <!-- Mostrar la tabla de resultados si la lista no está vacía -->
+            <table class="table table-responsive" id="result"  >
+                <thead>
+                    <tr>
+                        <th>Sector</th>
+                        <th>Lote</th>
+                        <th>Manzana</th>
+                        <th>Partida</th>
+                        <th>Observaciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="partida : ${partidas}">
+                        <td th:text="${partida.sector}"></td>
+                        <td th:text="${partida.lote}"></td>
+                        <td th:text="${partida.manzana}"></td>
+                        <td > <a  th:text="${partida.partida}" th:href="${partida.ruta}" target="_blank"></a></td>
+                        <td th:text="${partida.observaciones}"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div th:if="${#lists.isEmpty(partidas)}">
+    <p>No se encontraron partidas con los criterios especificados.</p>
+</div>
+
+        </div>
+ 
+    </body>
+    <!-- JavaScript para alternar entre formularios -->
+<script>
+    function showForm(formId) {
+        // Ocultar ambos formularios
+        document.getElementById('form-sector').style.display = 'none';
+        document.getElementById('form-partida').style.display = 'none';
+
+        // Mostrar el formulario seleccionado
+        document.getElementById(formId).style.display = 'block';
+    }
+</script>
+</html>

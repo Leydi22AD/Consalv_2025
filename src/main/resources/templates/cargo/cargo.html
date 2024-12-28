@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:insert = "~{cargo/templates_cargo::head}"></head>
+    <body>
+        <div th:insert ="~{cargo/templates_cargo::header}"></div>
+    <div class="container mt-5">
+    <h2>Busqueda de Expediente</h2>
+   <form th:action="@{/cargo/buscar}" method="post" id="search-form">
+       <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Introduce tu nombre" required> <!-- Asegúrate de que el nombre esté presente -->
+      </div>
+      <div class="mb-3">
+        <label for="apellido" class="form-label">Apellido</label>
+        <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Introduce tu apellido" required> <!-- Asegúrate de que el nombre esté presente -->
+      </div>
+      <button type="submit" class="btn btn-primary">Buscar</button>
+    </form>
+</div>
+ 
+        <div  class="position-absolute top-50 start-50 translate-middle">    
+    <h2>Resultados de la Búsqueda de Expedientes</h2>
+
+    <div>
+        <table class="table table-responsive" id="result">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Número de Expediente</th>
+                    <th>Respuesta</th>
+                </tr>
+            </thead>
+            <tbody>
+    <tr th:each="expediente : ${expedientes}">
+        <td th:text="${expediente.solicitante.nombre}"></td>
+        <td th:text="${expediente.solicitante.apellido}"></td>
+        <td th:text="${expediente.numeroEx}"></td>
+        <td>
+            <span th:text="${expediente.respuesta.carta}">Respuesta</span>
+        </td>
+    </tr>
+</tbody>
+
+        </table>
+           <div th:if="${#lists.isEmpty(partidas)}">
+    <p>No se encontraron partidas con los criterios especificados.</p>
+</div>
+    </div>
+      
+    </div>
+    </body>
+    <script th:src="@{/js/bootstrap.bundle.min.js}" type="text/javascript"></script>
+</html>
