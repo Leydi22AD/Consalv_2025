@@ -15,19 +15,21 @@ public class partida {
     private String manzana;
     
     @Column(name = "lote", length = 3)
-    private String lote; 
+    private String lote;
 
- @Column(name = "sector", length = 255)
+   
+    @Column(name = "sector", length = 10)
     private String sector;
 
     @Column(name = "partida", length = 10)
     private String partida;
-     
+     @Column(name = "observaciones", length = 255)
+     private String observaciones;  
     @Column(name = "ruta", length = 255)
     private String ruta;  // Columna para almacenar la ruta del PDF
 
     // Getters and Setters
-    public Integer getIdPar() { 
+    public Integer getIdPar() {
         return idPar;
     }
 
@@ -42,9 +44,6 @@ public class partida {
     public void setSector(String sector) {
         this.sector = sector;
     }
-
-
-  
 
     public String getLote() {
         return lote;
@@ -70,7 +69,13 @@ public class partida {
         this.partida = partida;
     }
 
+    public String getObservaciones() {
+        return observaciones;
+    }
 
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
+    }
 
     public String getRuta() {
         return ruta;

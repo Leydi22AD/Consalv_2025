@@ -15,39 +15,21 @@
         <button class="btn btn-secondary" id="btn-partida" onclick="showForm('form-partida')">Buscar por Partida</button>
     </div>
 
-    <!-- Formulario para buscar por sector, manzana y lote >-->
-    <div id="form-sector" style="display: none;">
+    <!-- Formulario para buscar por sector, manzana y lote -->
+    <div id="form-sector" style="display: block;">
         <form method="post" th:action="@{/cargo/buscar-partida}" id="search-form">
-<div class="mb-3">
+ <div class="mb-3">
     <label for="sector" class="form-label">Sector</label>
-  <select class="form-control" id="sector" name="sector" >
-    <option value="" selected>Selecciona un Sector</option>
-    <option value="AA.HH. MARIA PARADO DE BELLIDO">AA.HH. MARIA PARADO DE BELLIDO</option>
-    <option value="AA.HH. TUPAC AMARU II">AA.HH. TUPAC AMARU II</option>
-    <option value="AA.HH. LAS FLORES">AA.HH. LAS FLORES</option>
-    <option value="AA.HH. SAN MARTIN">AA.HH. SAN MARTIN</option>
-    <option value="AA.HH. JORGE CHAVEZ">AA.HH. JORGE CHAVEZ</option>
-    <option value="AA.HH. LOS JARDINES DE LA PRIMAVERA">AA.HH. LOS JARDINES DE LA PRIMAVERA</option>
-    <option value="AA.HH. VILLA MERCEDES">AA.HH. VILLA MERCEDES</option>
-    <option value="PUEBLO TRADICIONAL DE TOCACHE III ETAPA">PUEBLO TRADICIONAL DE TOCACHE III ETAPA</option>
-    <option value="AA.HH. CHAN CHAN SECTOR I">AA.HH. CHAN CHAN SECTOR I</option>
-    <option value="AA.HH. FREDY ALIAGA">AA.HH. FREDY ALIAGA</option>
-    <option value="CASERIO  DE CACHIYACU">CASERIO  DE CACHIYACU</option>
-    <option value="CENTRO POBLADO DEL CASERIO DE PUCAYACU">CENTRO POBLADO DEL CASERIO DE PUCAYACU</option>
-    <option value="CENTRO POBLADO NUEVO BAMBAMARCA">CENTRO POBLADO NUEVO BAMBAMARCA</option>
-    <option value="BARRIO LA UNION">BARRIO LA UNION</option>
-    <option value="AA.HH. CHAN CHAN SECTOR II">AA.HH. CHAN CHAN SECTOR II</option>
-    <option value="AA.HH. NUEVO MIRAFLORES">AA.HH. NUEVO MIRAFLORES</option>
-    <option value="PUEBLO TRADICIONAL DE TOCACHE I ETAPA">PUEBLO TRADICIONAL DE TOCACHE I ETAPA</option>
-    <option value="PUEBLO TRADICIONAL DE TOCACHE II ETAPA">PUEBLO TRADICIONAL DE TOCACHE II ETAPA</option>
-    <option value="AA.HH. NUEVA ANADA LUCIA">AA.HH. NUEVA ANADA LUCIA</option>
-    <option value="AA.HH. 28 DE JULIO">AA.HH. 28 DE JULIO</option>
-    <option value="AA.HH. 15 DE JULIO">AA.HH. 15 DE JULIO</option>
-</select>
-
+    <select class="form-control" id="sector" name="sector">
+        <option value="" disabled selected>Selecciona un Sector</option>
+        <!-- Iteramos sobre la lista de sectores que pasamos al modelo -->
+        <th:block th:each="sector : ${sectoresList}">
+            <option th:value="${sector.idS}" th:text="${sector.sector}"></option>
+        </th:block>
+    </select>
 </div>
 
-    <div class="mb-3">
+            <div class="mb-3">
                 <label for="manzana" class="form-label">Manzana</label>
                 <input type="text" class="form-control" id="manzana" name="manzana" placeholder="Introduce tu Manzana">
             </div>
@@ -90,6 +72,7 @@
                         <th>Lote</th>
                         <th>Manzana</th>
                         <th>Partida</th>
+                        <th>Observaciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -98,7 +81,7 @@
                         <td th:text="${partida.lote}"></td>
                         <td th:text="${partida.manzana}"></td>
                         <td > <a  th:text="${partida.partida}" th:href="${partida.ruta}" target="_blank"></a></td>
-                      
+                        <td th:text="${partida.observaciones}"></td>
                     </tr>
                 </tbody>
             </table>

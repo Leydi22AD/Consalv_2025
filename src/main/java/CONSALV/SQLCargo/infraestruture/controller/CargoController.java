@@ -4,13 +4,14 @@ package CONSALV.SQLCargo.infraestruture.controller;
 import CONSALV.SQLCargo.app.repository.ExpedienteRepository;
 import CONSALV.SQLCargo.app.service.ExpedienteService;
 import CONSALV.SQLCargo.app.service.PartidaService;
-import CONSALV.SQLCargo.app.service.RespuestaService; 
+import CONSALV.SQLCargo.app.service.RespuestaService;
+import CONSALV.SQLCargo.app.service.SectoresService;
 import CONSALV.SQLCargo.app.service.SolicitanteService;
 import CONSALV.SQLCargo.infraestruture.entity.expediente;
-import CONSALV.SQLCargo.infraestruture.entity.partida; 
+import CONSALV.SQLCargo.infraestruture.entity.partida;
+import CONSALV.SQLCargo.infraestruture.entity.sectores;
 import CONSALV.SQLCargo.infraestruture.entity.solicitante;
 import java.util.List;
-import java.util.Optional;
 import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.slf4j.*;
@@ -26,15 +27,16 @@ public class CargoController {
     private final SolicitanteService ss;
     private final PartidaService ps;
     private final ExpedienteService es;
-    private final RespuestaService rs; 
+    private final RespuestaService rs;
+     private final SectoresService sse;
     private final Logger log = LoggerFactory.getLogger(CargoController.class);    
 
-    public CargoController(SolicitanteService ss, PartidaService ps, ExpedienteService es, RespuestaService rs ) {
+    public CargoController(SolicitanteService ss, PartidaService ps, ExpedienteService es, RespuestaService rs, SectoresService sse) {
         this.ss = ss;
         this.ps = ps;
         this.es = es;
         this.rs = rs;
-        
+        this.sse = sse;
     }
 
  @GetMapping("/add-cargo")
@@ -55,28 +57,30 @@ public String buscarExpedientes(@RequestParam("nombre") String nombre,
 
     
     @GetMapping("/add-partida")
-    public String partida(Model model) { 
-        return "/cargo/partida";
-    }
-@PostMapping("/buscar-partida")
-public String buscarPartida(@RequestParam("sector") String sector,
-                             @RequestParam("manzana") String manzana,
-                             @RequestParam("lote") String lote,
-                             Model model) {
-    System.out.println("Sector: " + sector);  // Verifica que esté llegando el sector
-    System.out.println("Manzana: " + manzana); // Verifica que esté llegando la manzana
-    System.out.println("Lote: " + lote);      // Verifica que esté llegando el lote
-
-    if (sector.isEmpty() ||manzana.isEmpty() || lote.isEmpty()) {
-        model.addAttribute("error", "Por favor, complete todos los campos.");
+    public String partida(Model model) {
+        Iterable<sectores> sectoresList = sse.getSectores();
+        model.addAttribute("sectoresList", sectoresList);
         return "/cargo/partida";
     }
 
-    Iterable<partida> partidas = ps.buscarPartida(sector, manzana, lote);
-    model.addAttribute("partidas", partidas);
-    return "/cargo/partida";  // Regresa a la misma vista con los resultados
-}
+    @PostMapping("/buscar-partida")
+    public String buscarPartida(@RequestParam("sector") Integer sectorId,
+                                 @RequestParam("manzana") String manzana,
+                                 @RequestParam("lote") String lote,
+                                 Model model) {
+        if (manzana.isEmpty() || lote.isEmpty()) {
+            model.addAttribute("error", "Por favor, complete todos los campos.");
+            return "/cargo/partida";
+        }
 
+//        sectores sectores = new sectores();
+//        sectores.setIdS(sectorId);
+//
+//        Iterable<partida> partidas = ps.buscarPartida(manzana,sectorId, lote);
+//        model.addAttribute("partidas", partidas);
+
+        return "/cargo/partida";
+    }
 
     @PostMapping("/buscar-por-partida")
     public String buscarPorPartida(@RequestParam("partida") String partida, Model model) {
