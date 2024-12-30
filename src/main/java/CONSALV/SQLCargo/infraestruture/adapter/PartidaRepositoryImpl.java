@@ -5,9 +5,7 @@
 package CONSALV.SQLCargo.infraestruture.adapter;
 
 import CONSALV.SQLCargo.app.repository.PartidaRepository;
-import CONSALV.SQLCargo.infraestruture.entity.partida;
-import CONSALV.SQLCargo.infraestruture.entity.sectores;
-import CONSALV.SQLCargo.infraestruture.entity.solicitante;
+import CONSALV.SQLCargo.infraestruture.entity.partida; 
 import java.util.List;
 import org.springframework.stereotype.Repository;
 
@@ -25,7 +23,7 @@ public final PartidaCrudRepository pcr;
  
 
     @Override
-    public List<partida> findByManzanaAndSectorAndLote(String manzana,  String  sector, String lote) {
+    public Iterable<partida> buscarPartida(String manzana, String sector, String lote){
         return pcr.findByManzanaAndSectorAndLote(manzana, sector, lote);
     }
 @Override
