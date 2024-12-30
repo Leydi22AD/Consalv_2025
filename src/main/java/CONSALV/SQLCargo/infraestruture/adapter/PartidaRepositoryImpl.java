@@ -5,9 +5,7 @@
 package CONSALV.SQLCargo.infraestruture.adapter;
 
 import CONSALV.SQLCargo.app.repository.PartidaRepository;
-import CONSALV.SQLCargo.infraestruture.entity.partida;
-import CONSALV.SQLCargo.infraestruture.entity.sectores;
-import CONSALV.SQLCargo.infraestruture.entity.solicitante;
+import CONSALV.SQLCargo.infraestruture.entity.partida; 
 import java.util.List;
 import org.springframework.stereotype.Repository;
 
@@ -24,12 +22,29 @@ public final PartidaCrudRepository pcr;
     }
  
 
-    @Override
-    public List<partida> findByManzanaAndSectorAndLote(String manzana,  String  sector, String lote) {
-        return pcr.findByManzanaAndSectorAndLote(manzana, sector, lote);
-    }
+ 
 @Override
     public List<partida> buscarPorPartida(String partida) {
     return pcr.findByPartida(partida);
+    }
+
+    @Override
+    public Iterable<partida> buscarPartida(String  sector, String manzana, String lote) {
+       return pcr.findBySectorAndManzanaAndLote(sector, manzana, lote);  
+    }
+
+    @Override
+    public List<partida> findBySector(String  sector) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<partida> findBySectorAndManzana(String  sector, String manzana) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<partida> findBySectorAndLote(String  sector, String lote) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
