@@ -15,6 +15,8 @@ C:\Users\CONSALV\Documents\NetBeansProjects\SQLCargo\src\main\java\CONSALV\SQLCa
 C:\Users\CONSALV\Documents\NetBeansProjects\SQLCargo\src\main\java\CONSALV\SQLCargo\infraestruture\adapter\SolicitanteCrudRepository.java
 C:\Users\CONSALV\Documents\NetBeansProjects\SQLCargo\src\main\java\CONSALV\SQLCargo\infraestruture\adapter\SolicitanteRepositoryImpl.java
 C:\Users\CONSALV\Documents\NetBeansProjects\SQLCargo\src\main\java\CONSALV\SQLCargo\infraestruture\configuration\BeanConfiguration.java
+C:\Users\CONSALV\Documents\NetBeansProjects\SQLCargo\src\main\java\CONSALV\SQLCargo\infraestruture\configuration\ThymeleafConfig.java
+C:\Users\CONSALV\Documents\NetBeansProjects\SQLCargo\src\main\java\CONSALV\SQLCargo\infraestruture\configuration\WebConfig.java
 C:\Users\CONSALV\Documents\NetBeansProjects\SQLCargo\src\main\java\CONSALV\SQLCargo\infraestruture\controller\CargoController.java
 C:\Users\CONSALV\Documents\NetBeansProjects\SQLCargo\src\main\java\CONSALV\SQLCargo\infraestruture\entity\expediente.java
 C:\Users\CONSALV\Documents\NetBeansProjects\SQLCargo\src\main\java\CONSALV\SQLCargo\infraestruture\entity\partida.java
