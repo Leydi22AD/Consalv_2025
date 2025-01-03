@@ -1,9 +1,93 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-      <head th:insert = "~{cargo/templates_cargo::head}"></head>
-    <body>
-        <div th:insert ="~{cargo/templates_cargo::header}"></div>
+<head th:insert="~{cargo/templates_cargo::head}">
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div th:insert="~{cargo/templates_cargo::header}"></div>
+    <div class="container mt-5">
+        <h2>Búsqueda de Recibos</h2>
+        
+        <!-- Botones para alternar entre formularios -->
+        <div class="mb-4">
+            <button id="btn-solicitante" class="btn btn-secondary">Buscar por Solicitante</button>
+            <button id="btn-recibo" class="btn btn-secondary">Buscar por Número de Recibo</button>
+        </div>
 
-        <div>TODO write content</div>
-    </body>
+        <!-- Formulario para buscar por solicitante -->
+        <div id="form-solicitante" class="mb-5">
+            <h3>Buscar por Solicitante</h3>
+            <form th:action="@{/cargo/buscar-por-solicitante}" method="post" id="search-by-solicitante-form">
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Introduce el nombre del solicitante" required>
+                </div>
+                <div class="mb-3">
+                    <label for="apellido" class="form-label">Apellido</label>
+                    <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Introduce el apellido del solicitante" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Buscar</button>
+            </form>
+        </div>
+
+        <!-- Formulario para buscar por número de recibo -->
+        <div id="form-recibo" class="hidden mb-5">
+            <h3>Buscar por Número de Recibo</h3>
+            <form th:action="@{/cargo/buscar-por-numero}" method="post" id="search-by-receipt-form">
+                <div class="mb-3">
+                    <label for="numeroR" class="form-label">Número de Recibo</label>
+                    <input type="text" class="form-control" id="numeroR" name="numeroR" placeholder="Introduce el número de recibo" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Buscar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Resultados de la búsqueda -->
+    <div class="container mt-5">
+        <h2>Resultados de la Búsqueda</h2>
+        <div>
+            <table class="table table-responsive" id="result">
+                <thead>
+                    <tr>
+                        <th>ID del Recibo</th>
+                        <th>Nombre del Solicitante</th>
+                        <th>Apellido del Solicitante</th>
+                        <th>Número de Recibo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="recibo : ${recibos}">
+                        <td th:text="${recibo.idR}"></td>
+                        <td th:text="${recibo.solicitante.nombre}"></td>
+                        <td th:text="${recibo.solicitante.apellido}"></td>
+                        <td th:text="${recibo.numeroR}"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div th:if="${#lists.isEmpty(recibos)}">
+                <p>No se encontraron resultados con los criterios especificados.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script th:src="@{/js/bootstrap.bundle.min.js}" type="text/javascript"></script>
+    <script>
+        // Alternar entre formularios
+        document.getElementById("btn-solicitante").addEventListener("click", function() {
+            document.getElementById("form-solicitante").classList.remove("hidden");
+            document.getElementById("form-recibo").classList.add("hidden");
+        });
+
+        document.getElementById("btn-recibo").addEventListener("click", function() {
+            document.getElementById("form-solicitante").classList.add("hidden");
+            document.getElementById("form-recibo").classList.remove("hidden");
+        });
+    </script>
+</body>
 </html>
