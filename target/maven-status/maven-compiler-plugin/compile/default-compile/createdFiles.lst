@@ -8,6 +8,7 @@ CONSALV\SQLCargo\infraestruture\controller\CargoController.class
 CONSALV\SQLCargo\infraestruture\entity\partida.class
 CONSALV\SQLCargo\infraestruture\adapter\PartidaCrudRepository.class
 CONSALV\SQLCargo\infraestruture\configuration\WebConfig.class
+CONSALV\SQLCargo\infraestruture\entity\recibo.class
 CONSALV\SQLCargo\app\repository\ExpedienteRepository.class
 CONSALV\SQLCargo\infraestruture\configuration\ThymeleafConfig.class
 CONSALV\SQLCargo\app\service\SolicitanteService.class
