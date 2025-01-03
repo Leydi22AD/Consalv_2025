@@ -10,6 +10,8 @@ public class solicitante {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(name = "fecha", length = 20)
+    private String fecha;
     @Column(name = "nombre", length = 20)
     private String nombre;
 
@@ -33,6 +35,13 @@ public class solicitante {
         this.id = id;
     }
 
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
     public String getNombre() {
         return nombre;
     }
