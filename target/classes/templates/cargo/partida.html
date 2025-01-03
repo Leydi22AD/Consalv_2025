@@ -16,7 +16,7 @@
     </div>
 
     <!-- Formulario para buscar por sector, manzana y lote -->
-    <div id="form-sector" style="display: none;">
+    <div id="form-sector" style="display: block;">
         <form method="post" th:action="@{/cargo/buscar-partida}" id="search-form">
  <div class="mb-3">
     <label for="sector" class="form-label">Sector</label>
@@ -97,7 +97,9 @@
                         <td th:text="${partida.sector}"></td>
                         <td th:text="${partida.lote}"></td>
                         <td th:text="${partida.manzana}"></td>
-                        <td > <a  th:text="${partida.partida}" th:href="${partida.ruta}" target="_blank"></a></td> 
+                        <td>
+                            <a  th:text="${partida.partida}" th:href="${partida.ruta}" target="_blank"></a>
+                        </td> 
                     </tr>
                 </tbody>
             </table>

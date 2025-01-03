@@ -22,8 +22,11 @@ public class recibo {
     @JoinColumn(name = "id", referencedColumnName = "id", nullable = false)
     private solicitante solicitante;
 
-    @Column(name = "numeroR", length = 9)
+    @Column(name = "numeroR", length = 19)
     private String numeroR;
+
+    @Column(name = "rutaR", length = 100)
+    private String rutaR;
 
     public Integer getIdR() {
         return idR;
@@ -47,6 +50,14 @@ public class recibo {
 
     public void setNumeroR(String numeroR) {
         this.numeroR = numeroR;
+    }
+
+    public String getRutaR() {
+        return rutaR;
+    }
+
+    public void setRutaR(String rutaR) {
+        this.rutaR = rutaR;
     }
 
 }

@@ -1,12 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:insert="~{cargo/templates_cargo::head}">
-    <style>
-        .hidden {
-            display: none;
-        }
-    </style>
-</head>
+<head th:insert="~{cargo/templates_cargo::head}"></head>
 <body>
     <div th:insert="~{cargo/templates_cargo::header}"></div>
     <div class="container mt-5">
@@ -14,14 +8,14 @@
         
         <!-- Botones para alternar entre formularios -->
         <div class="mb-4">
-            <button id="btn-solicitante" class="btn btn-secondary">Buscar por Solicitante</button>
-            <button id="btn-recibo" class="btn btn-secondary">Buscar por Número de Recibo</button>
+            <button id="btn-solicitante" class="btn btn-primary" onclick="showForm('form-solicitante')">Buscar por Solicitante</button>
+            <button id="btn-recibo" class="btn btn-secondary"onclick="showForm('form-recibo')">Buscar por Número de Recibo</button>
         </div>
 
         <!-- Formulario para buscar por solicitante -->
-        <div id="form-solicitante" class="mb-5">
+        <div id="form-solicitante" class="mb-5" style="display: block;">
             <h3>Buscar por Solicitante</h3>
-            <form th:action="@{/cargo/buscar-por-solicitante}" method="post" id="search-by-solicitante-form">
+            <form th:action="@{/cargo/buscar-recibo-nombre}" method="post" id="search-by-solicitante-form">
                 <div class="mb-3">
                     <label for="nombre" class="form-label">Nombre</label>
                     <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Introduce el nombre del solicitante" required>
@@ -35,7 +29,7 @@
         </div>
 
         <!-- Formulario para buscar por número de recibo -->
-        <div id="form-recibo" class="hidden mb-5">
+        <div id="form-recibo" class="mb-5" style="display: none;">
             <h3>Buscar por Número de Recibo</h3>
             <form th:action="@{/cargo/buscar-por-numero}" method="post" id="search-by-receipt-form">
                 <div class="mb-3">
@@ -54,7 +48,6 @@
             <table class="table table-responsive" id="result">
                 <thead>
                     <tr>
-                        <th>ID del Recibo</th>
                         <th>Nombre del Solicitante</th>
                         <th>Apellido del Solicitante</th>
                         <th>Número de Recibo</th>
@@ -62,10 +55,9 @@
                 </thead>
                 <tbody>
                     <tr th:each="recibo : ${recibos}">
-                        <td th:text="${recibo.idR}"></td>
                         <td th:text="${recibo.solicitante.nombre}"></td>
                         <td th:text="${recibo.solicitante.apellido}"></td>
-                        <td th:text="${recibo.numeroR}"></td>
+                        <td><a th:text="${recibo.numeroR}" th:href="${recibo.rutaR}"></a></td>
                     </tr>
                 </tbody>
             </table>
@@ -78,16 +70,15 @@
     <!-- Scripts -->
     <script th:src="@{/js/bootstrap.bundle.min.js}" type="text/javascript"></script>
     <script>
-        // Alternar entre formularios
-        document.getElementById("btn-solicitante").addEventListener("click", function() {
-            document.getElementById("form-solicitante").classList.remove("hidden");
-            document.getElementById("form-recibo").classList.add("hidden");
-        });
+   
+        function showForm(formId) {
+        // Ocultar ambos formularios
+        document.getElementById('form-solicitante').style.display = 'none';
+        document.getElementById('form-recibo').style.display = 'none';
 
-        document.getElementById("btn-recibo").addEventListener("click", function() {
-            document.getElementById("form-solicitante").classList.add("hidden");
-            document.getElementById("form-recibo").classList.remove("hidden");
-        });
+        // Mostrar el formulario seleccionado
+        document.getElementById(formId).style.display = 'block';
+    }
     </script>
 </body>
 </html>

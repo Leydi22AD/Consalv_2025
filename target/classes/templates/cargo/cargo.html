@@ -37,7 +37,7 @@
         <td th:text="${expediente.solicitante.apellido}"></td>
         <td th:text="${expediente.numeroEx}"></td>
         <td>
-            <span th:text="${expediente.respuesta.carta}">Respuesta</span>
+            <a th:text="${expediente.respuesta.carta}" th:href="${expediente.respuesta.rutaC}"></a>
         </td>
     </tr>
 </tbody>

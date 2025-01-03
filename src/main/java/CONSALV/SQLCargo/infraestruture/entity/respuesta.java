@@ -17,6 +17,8 @@ public class respuesta {
 
     @Column(name = "carta", length = 15)
     private String carta;
+    @Column(name = "rutaC", length = 100)
+    private String rutaC;
 
     // Getters and Setters
     public Integer getIdR() {
@@ -41,5 +43,13 @@ public class respuesta {
 
     public void setCarta(String carta) {
         this.carta = carta;
+    }
+
+    public String getRutaC() {
+        return rutaC;
+    }
+
+    public void setRutaC(String rutaC) {
+        this.rutaC = rutaC;
     }
 }

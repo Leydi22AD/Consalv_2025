@@ -6,10 +6,12 @@ package CONSALV.SQLCargo.infraestruture.configuration;
 
 import CONSALV.SQLCargo.app.repository.ExpedienteRepository;
 import CONSALV.SQLCargo.app.repository.PartidaRepository;
+import CONSALV.SQLCargo.app.repository.ReciboRepository;
 import CONSALV.SQLCargo.app.repository.RespuestaRepository; 
 import CONSALV.SQLCargo.app.repository.SolicitanteRepository;
 import CONSALV.SQLCargo.app.service.ExpedienteService;
 import CONSALV.SQLCargo.app.service.PartidaService;
+import CONSALV.SQLCargo.app.service.ReciboService;
 import CONSALV.SQLCargo.app.service.RespuestaService; 
 import CONSALV.SQLCargo.app.service.SolicitanteService;
 import org.springframework.context.annotation.*;
@@ -29,9 +31,14 @@ public PartidaService partidaService(PartidaRepository pr){
 public ExpedienteService expedienteService(ExpedienteRepository er ){
     return new ExpedienteService(er);
 }
+@Bean
+public ReciboService reciboService(ReciboRepository rre){
+    return new ReciboService(rre);
+}
   @Bean
 public RespuestaService respuestaService(RespuestaRepository rr){
     return new RespuestaService(rr);
 } 
+
  
 }

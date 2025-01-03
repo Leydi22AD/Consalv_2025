@@ -4,10 +4,12 @@ package CONSALV.SQLCargo.infraestruture.controller;
 import CONSALV.SQLCargo.app.repository.ExpedienteRepository;
 import CONSALV.SQLCargo.app.service.ExpedienteService;
 import CONSALV.SQLCargo.app.service.PartidaService;
+import CONSALV.SQLCargo.app.service.ReciboService;
 import CONSALV.SQLCargo.app.service.RespuestaService; 
 import CONSALV.SQLCargo.app.service.SolicitanteService;
 import CONSALV.SQLCargo.infraestruture.entity.expediente;
 import CONSALV.SQLCargo.infraestruture.entity.partida; 
+import CONSALV.SQLCargo.infraestruture.entity.recibo;
 import CONSALV.SQLCargo.infraestruture.entity.solicitante;
 import java.util.List;
 import org.springframework.stereotype.*;
@@ -25,10 +27,11 @@ public class CargoController {
     private final SolicitanteService ss;
     private final PartidaService ps;
     private final ExpedienteService es;
-    private final RespuestaService rs; 
+    private final ReciboService rs; 
+    
     private final Logger log = LoggerFactory.getLogger(CargoController.class);    
 
-    public CargoController(SolicitanteService ss, PartidaService ps, ExpedienteService es, RespuestaService rs ) {
+    public CargoController(SolicitanteService ss, PartidaService ps, ExpedienteService es, ReciboService rs ) {
         this.ss = ss;
         this.ps = ps;
         this.es = es;
@@ -91,6 +94,32 @@ public String buscarExpedientes(@RequestParam("nombre") String nombre,
 
  @GetMapping("/add-recibo")
     public String recibo(){
+        return "/cargo/recibo";
+    }
+        
+    @PostMapping("/buscar-recibo-nombre")
+public String buscarRecibos(@RequestParam("nombre") String nombre,
+                                 @RequestParam("apellido") String apellido,
+                                 Model model) {
+    List<recibo> recibos = rs.findBySolicitanteNombreAndSolicitanteApellido(nombre, apellido);
+    model.addAttribute("recibos", recibos); // Asegúrate de que el nombre sea 'expedientes'
+      if (apellido.isEmpty() || nombre.isEmpty()) {
+    model.addAttribute("error", "Por favor, complete todos los campos.");}
+    return "/cargo/recibo"; // Asegúrate de que esta es la vista correcta
+}
+@PostMapping("/buscar-por-numero")
+    public String buscarPorRecibo(@RequestParam("recibo") String numeroR, Model model) {
+        if (numeroR.isEmpty()) {
+            model.addAttribute("error", "Por favor, introduzca un número de partida.");
+            return "/cargo/partida";
+        }
+
+        List<recibo> recibos = rs.buscarPorRecibo(numeroR);
+        if (recibos.isEmpty()) {
+            model.addAttribute("error", "No se encontraron partidas con el número especificado.");
+        }
+
+        model.addAttribute("recibos", recibos);
         return "/cargo/recibo";
     }
     

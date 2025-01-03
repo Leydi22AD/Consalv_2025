@@ -17,6 +17,8 @@ public class expediente {
 
     @Column(name = "numeroEx", length = 9)
     private String numeroEx;
+    @Column(name = "rutaEx", length = 9)
+    private String rutaEx;
 
     @ManyToOne
     @JoinColumn(name = "idR", referencedColumnName = "idR", nullable = false)
@@ -45,6 +47,14 @@ public class expediente {
 
     public void setNumeroEx(String numeroEx) {
         this.numeroEx = numeroEx;
+    }
+
+    public String getRutaEx() {
+        return rutaEx;
+    }
+
+    public void setRutaEx(String rutaEx) {
+        this.rutaEx = rutaEx;
     }
 
     public respuesta getRespuesta() {
