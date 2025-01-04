@@ -8,11 +8,15 @@
    <form th:action="@{/cargo/buscar}" method="post" id="search-form">
        <div class="mb-3">
         <label for="nombre" class="form-label">Nombre</label>
-        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Introduce tu nombre" required> <!-- Asegúrate de que el nombre esté presente -->
+        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Introduce tu nombre" > <!-- Asegúrate de que el nombre esté presente -->
       </div>
       <div class="mb-3">
         <label for="apellido" class="form-label">Apellido</label>
-        <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Introduce tu apellido" required> <!-- Asegúrate de que el nombre esté presente -->
+        <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Introduce el primer apellido" > <!-- Asegúrate de que el nombre esté presente -->
+      </div>
+      <div class="mb-3">
+        <label for="apellido2" class="form-label">Segundo Apellido</label>
+        <input type="text" class="form-control" id="apellido2" name="apellido2" placeholder="Introduce el segundo apellido"> <!-- Asegúrate de que el nombre esté presente -->
       </div>
       <button type="submit" class="btn btn-primary">Buscar</button>
     </form>
@@ -27,6 +31,10 @@
                 <tr>
                     <th>Nombre</th>
                     <th>Apellido</th>
+                    <th>Segundo Apellido </th>
+                    <th>Dni </th>
+                    <th>Celular </th>
+                    <th>Solicito </th>
                     <th>Número de Expediente</th>
                     <th>Respuesta</th>
                 </tr>
@@ -35,7 +43,11 @@
     <tr th:each="expediente : ${expedientes}">
         <td th:text="${expediente.solicitante.nombre}"></td>
         <td th:text="${expediente.solicitante.apellido}"></td>
-        <td th:text="${expediente.numeroEx}"></td>
+        <td th:text="${expediente.solicitante.apellido2}"></td>
+        <td th:text="${expediente.solicitante.dni}"></td>
+        <td th:text="${expediente.solicitante.celular}"></td>
+        <td th:text="${expediente.solicitante.solicito}"></td>
+        <td><a th:href="${expediente.rutaEx}" th:text="${expediente.numeroEx}"></a> </td>
         <td>
             <a th:text="${expediente.respuesta.carta}" th:href="${expediente.respuesta.rutaC}"></a>
         </td>

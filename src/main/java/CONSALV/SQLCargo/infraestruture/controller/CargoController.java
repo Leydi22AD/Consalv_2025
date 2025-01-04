@@ -46,8 +46,9 @@ public class CargoController {
     @PostMapping("/buscar")
 public String buscarExpedientes(@RequestParam("nombre") String nombre,
                                  @RequestParam("apellido") String apellido,
+                                 @RequestParam("apellido") String apellido2,
                                  Model model) {
-    List<expediente> expedientes = es.buscarExpedientes(nombre, apellido);
+    List<expediente> expedientes = es.findBySolicitanteNombreAndSolicitanteApellidoAndSolicitanteApellido2(nombre, apellido, apellido2);
     model.addAttribute("expedientes", expedientes); // Asegúrate de que el nombre sea 'expedientes'
       if (apellido.isEmpty() || nombre.isEmpty()) {
     model.addAttribute("error", "Por favor, complete todos los campos.");}

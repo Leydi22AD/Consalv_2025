@@ -5,7 +5,6 @@
 package CONSALV.SQLCargo.app.service;
 
 import CONSALV.SQLCargo.app.repository.ExpedienteRepository;
-import CONSALV.SQLCargo.app.repository.RespuestaRepository;
 import CONSALV.SQLCargo.infraestruture.entity.expediente;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +17,8 @@ public class ExpedienteService {
      
     }
   
-    public List<expediente> buscarExpedientes(String nombre, String apellido) {
-        return er.findBySolicitanteNombreAndSolicitanteApellido(nombre, apellido);
+    public List<expediente> findBySolicitanteNombreAndSolicitanteApellidoAndSolicitanteApellido2(String nombre, String apellido, String apellido2) {
+        return er.findBySolicitanteNombreAndSolicitanteApellidoAndSolicitanteApellido2(nombre, apellido, apellido2);
     }
 
 

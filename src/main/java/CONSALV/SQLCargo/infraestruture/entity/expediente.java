@@ -15,9 +15,9 @@ public class expediente {
     @JoinColumn(name = "id", referencedColumnName = "id", nullable = false)
     private solicitante solicitante;
 
-    @Column(name = "numeroEx", length = 9)
+    @Column(name = "numeroEx", length = 19)
     private String numeroEx;
-    @Column(name = "rutaEx", length = 9)
+    @Column(name = "rutaEx", length = 100)
     private String rutaEx;
 
     @ManyToOne

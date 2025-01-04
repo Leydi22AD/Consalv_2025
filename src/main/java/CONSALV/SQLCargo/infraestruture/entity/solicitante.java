@@ -19,9 +19,9 @@ public class solicitante {
     private String apellido;
     @Column(name = "apellido2", length = 20)
     private String apellido2;
-    @Column(name = "dni", length = 8)
+    @Column(name = "dni", length = 28)
     private String dni;
-    @Column(name = "celular", length = 11)
+    @Column(name = "celular", length = 13)
     private String celular;
     @Column(name = "solicito", length = 100)
     private String solicito;

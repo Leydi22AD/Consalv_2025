@@ -15,7 +15,7 @@ public class respuesta {
     @JoinColumn(name = "idEx", referencedColumnName = "idEx", nullable = false)
     private expediente expediente;
 
-    @Column(name = "carta", length = 15)
+    @Column(name = "carta", length = 100)
     private String carta;
     @Column(name = "rutaC", length = 100)
     private String rutaC;
