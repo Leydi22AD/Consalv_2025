@@ -15,7 +15,7 @@ public class solicitante {
     @Column(name = "nombre", length = 20)
     private String nombre;
 
-    @Column(name = "apellido", length = 20)
+    @Column(name = "apellido", length = 30)
     private String apellido;
     @Column(name = "apellido2", length = 20)
     private String apellido2;
