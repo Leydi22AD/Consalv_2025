@@ -19,6 +19,8 @@ public class expediente {
     private String numeroEx;
     @Column(name = "rutaEx", length = 100)
     private String rutaEx;
+    @Column(name = "observaciones", length = 100)
+    private String observaciones;
 
     @ManyToOne
     @JoinColumn(name = "idR", referencedColumnName = "idR", nullable = false)
@@ -63,5 +65,13 @@ public class expediente {
 
     public void setRespuesta(respuesta respuesta) {
         this.respuesta = respuesta;
+    }
+
+    public String getObservaciones() {
+        return observaciones;
+    }
+
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
     }
 }
