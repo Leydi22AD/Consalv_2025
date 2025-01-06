@@ -12,8 +12,8 @@ public class ReciboService {
         this.rre = rre;
     }
     
-    public List<recibo> findBySolicitanteNombreAndSolicitanteApellido(String nombre, String apellido){
-          return rre.findBySolicitanteNombreAndSolicitanteApellido(nombre, apellido);
+   public List<recibo> findByDatosPersonales(String datosPersonales){
+          return rre.findByDatosPersonales(datosPersonales);
       }
   public List<recibo> buscarPorRecibo(String numeroR){
       return rre.buscarPorRecibo(numeroR);

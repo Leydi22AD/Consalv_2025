@@ -21,6 +21,19 @@ public class ExpedienteService {
         return er.findBySolicitanteNombreAndSolicitanteApellidoAndSolicitanteApellido2(nombre, apellido, apellido2);
     }
 
+  public List<expediente> findBySolicitanteApellido(String apellido){
+      return er.findBySolicitanteApellido(apellido);
+  }
+  public List<expediente> findBySolicitanteNombre(String nombre){
+      return er.findBySolicitanteNombre(nombre);
+  }
+  public List<expediente> findBySolicitanteNombreAndSolicitanteApellido(String nombre, String apellido){
+      return er.findBySolicitanteNombreAndSolicitanteApellido(nombre, apellido);
+  }
+ public List<expediente> buscarPorExpediente(String numeroEx){
+      return er.buscarPorExpediente(numeroEx);
+  }
+
 
 
 

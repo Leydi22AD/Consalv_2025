@@ -16,6 +16,24 @@ public final ExpedienteCrudRepository ecr;
     public List<expediente> findBySolicitanteNombreAndSolicitanteApellidoAndSolicitanteApellido2(String nombre, String apellido, String apellido2){
         return  ecr.findBySolicitanteNombreAndSolicitanteApellidoAndSolicitanteApellido2(nombre, apellido, apellido2);
     }
+ @Override
+    public List<expediente> findBySolicitanteApellido(String apellido) {
+        return ecr.findBySolicitanteApellido(apellido); 
+    } 
 
+    @Override
+    public List<expediente> findBySolicitanteNombre(String nombre) {
+ return ecr.findBySolicitanteNombre(nombre);
+    }
+
+    @Override
+    public List<expediente> findBySolicitanteNombreAndSolicitanteApellido(String nombre, String apellido) {
+ return ecr.findBySolicitanteNombreAndSolicitanteApellido(nombre, apellido);   }
+
+    @Override
+    public List<expediente> buscarPorExpediente(String numeroEx) {
+ return ecr.findByNumeroEx(numeroEx);    }
+
+   
     
 }

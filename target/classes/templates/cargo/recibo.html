@@ -17,13 +17,10 @@
             <h3>Buscar por Solicitante</h3>
             <form th:action="@{/cargo/buscar-recibo-nombre}" method="post" id="search-by-solicitante-form">
                 <div class="mb-3">
-                    <label for="nombre" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Introduce el nombre del solicitante" required>
+                    <label for="datosPersonales" class="form-label">Datos Personales</label>
+                    <input type="text" class="form-control" id="datosPersonales" name="datosPersonales" placeholder="Introduce el nombre del solicitante" required>
                 </div>
-                <div class="mb-3">
-                    <label for="apellido" class="form-label">Apellido</label>
-                    <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Introduce el apellido del solicitante" required>
-                </div>
+                
                 <button type="submit" class="btn btn-primary">Buscar</button>
             </form>
         </div>

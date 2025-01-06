@@ -1,16 +1,13 @@
 
 package CONSALV.SQLCargo.infraestruture.controller;
 
-import CONSALV.SQLCargo.app.repository.ExpedienteRepository;
 import CONSALV.SQLCargo.app.service.ExpedienteService;
 import CONSALV.SQLCargo.app.service.PartidaService;
 import CONSALV.SQLCargo.app.service.ReciboService;
-import CONSALV.SQLCargo.app.service.RespuestaService; 
 import CONSALV.SQLCargo.app.service.SolicitanteService;
 import CONSALV.SQLCargo.infraestruture.entity.expediente;
-import CONSALV.SQLCargo.infraestruture.entity.partida; 
+import CONSALV.SQLCargo.infraestruture.entity.partida;
 import CONSALV.SQLCargo.infraestruture.entity.recibo;
-import CONSALV.SQLCargo.infraestruture.entity.solicitante;
 import java.util.List;
 import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,18 +40,73 @@ public class CargoController {
         return "/cargo/cargo"; // Asegúrate de que esta vista esté correctamente configurada
     }
     
-    @PostMapping("/buscar")
-public String buscarExpedientes(@RequestParam("nombre") String nombre,
-                                 @RequestParam("apellido") String apellido,
-                                 @RequestParam("apellido") String apellido2,
-                                 Model model) {
-    List<expediente> expedientes = es.findBySolicitanteNombreAndSolicitanteApellidoAndSolicitanteApellido2(nombre, apellido, apellido2);
-    model.addAttribute("expedientes", expedientes); // Asegúrate de que el nombre sea 'expedientes'
-      if (apellido.isEmpty() || nombre.isEmpty()) {
-    model.addAttribute("error", "Por favor, complete todos los campos.");}
-    return "/cargo/cargo"; // Asegúrate de que esta es la vista correcta
-}
+  @PostMapping("/buscarPorNombreCompleto")
+    public String buscarPorNombreCompleto(@RequestParam("nombre") String nombre,
+                                          @RequestParam("apellido") String apellido,
+                                          @RequestParam("apellido2") String apellido2,
+                                          Model model) {
+        if (nombre.isEmpty() || apellido.isEmpty() || apellido2.isEmpty()) {
+            model.addAttribute("error", "Por favor, complete todos los campos.");
+        } else {
+            List<expediente> expedientes = es.findBySolicitanteNombreAndSolicitanteApellidoAndSolicitanteApellido2(nombre, apellido, apellido2);
+            model.addAttribute("expedientes", expedientes.isEmpty() ? null : expedientes);
+            model.addAttribute("mensaje", expedientes.isEmpty() ? "No se encontraron resultados." : null);
+        }
+        return "/cargo/cargo";
+    }
 
+ 
+    @PostMapping("/buscarPorApellido")
+    public String buscarPorApellido(@RequestParam("apellido") String apellido, Model model) {
+        if (apellido.isEmpty()) {
+            model.addAttribute("error", "Por favor, ingrese un apellido.");
+        } else {
+            List<expediente> expedientes = es.findBySolicitanteApellido(apellido);
+            model.addAttribute("expedientes", expedientes.isEmpty() ? null : expedientes);
+            model.addAttribute("mensaje", expedientes.isEmpty() ? "No se encontraron resultados." : null);
+        }
+        return "/cargo/cargo";
+    }
+
+
+    @PostMapping("/buscarPorNombre")
+    public String buscarPorNombre(@RequestParam("nombre") String nombre, Model model) {
+        if (nombre.isEmpty()) {
+            model.addAttribute("error", "Por favor, ingrese un nombre.");
+        } else {
+            List<expediente> expedientes = es.findBySolicitanteNombre(nombre);
+            model.addAttribute("expedientes", expedientes.isEmpty() ? null : expedientes);
+            model.addAttribute("mensaje", expedientes.isEmpty() ? "No se encontraron resultados." : null);
+        }
+        return "/cargo/cargo";
+    }
+
+   
+    @PostMapping("/buscarPorNombreYApellido")
+    public String buscarPorNombreYApellido(@RequestParam("nombre") String nombre,
+                                           @RequestParam("apellido") String apellido,
+                                           Model model) {
+        if (nombre.isEmpty() || apellido.isEmpty()) {
+            model.addAttribute("error", "Por favor, complete ambos campos.");
+        } else {
+            List<expediente> expedientes = es.findBySolicitanteNombreAndSolicitanteApellido(nombre, apellido);
+            model.addAttribute("expedientes", expedientes.isEmpty() ? null : expedientes);
+            model.addAttribute("mensaje", expedientes.isEmpty() ? "No se encontraron resultados." : null);
+        }
+        return "/cargo/cargo";
+    }
+ 
+    @PostMapping("/buscarPorExpediente")
+    public String buscarPorExpediente(@RequestParam("numeroEx") String numeroEx, Model model) {
+        if (numeroEx.isEmpty()) {
+            model.addAttribute("error", "Por favor, ingrese un número de expediente.");
+        } else {
+            List<expediente> expedientes = es.buscarPorExpediente(numeroEx);
+            model.addAttribute("expedientes", expedientes.isEmpty() ? null : expedientes);
+            model.addAttribute("mensaje", expedientes.isEmpty() ? "No se encontraron resultados." : null);
+        }
+        return "/cargo/cargo";
+    }
     
     @GetMapping("/add-partida")
     public String partida(Model model) { 
@@ -99,12 +151,11 @@ public String buscarExpedientes(@RequestParam("nombre") String nombre,
     }
         
     @PostMapping("/buscar-recibo-nombre")
-public String buscarRecibos(@RequestParam("nombre") String nombre,
-                                 @RequestParam("apellido") String apellido,
+public String buscarRecibos(@RequestParam("datosPersonales") String datosPersonales,
                                  Model model) {
-    List<recibo> recibos = rs.findBySolicitanteNombreAndSolicitanteApellido(nombre, apellido);
+    List<recibo> recibos = rs.findByDatosPersonales(datosPersonales);
     model.addAttribute("recibos", recibos); // Asegúrate de que el nombre sea 'expedientes'
-      if (apellido.isEmpty() || nombre.isEmpty()) {
+      if (datosPersonales.isEmpty() ) {
     model.addAttribute("error", "Por favor, complete todos los campos.");}
     return "/cargo/recibo"; // Asegúrate de que esta es la vista correcta
 }

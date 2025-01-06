@@ -6,7 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface ReciboCrudRepository extends CrudRepository<recibo, Integer> {
 
-    List<recibo> findBySolicitanteNombreAndSolicitanteApellido(String nombre, String apellido);
+    List<recibo> findByDatosPersonales(String datosPersonales);
 
     List<recibo> findByNumeroR(String numeroR);
 }

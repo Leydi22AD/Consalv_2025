@@ -15,9 +15,10 @@ public class ReciboRepositoryImpl implements ReciboRepository{
     }
 
     @Override
-    public List<recibo> findBySolicitanteNombreAndSolicitanteApellido(String nombre, String apellido) {
-        return  rcr.findBySolicitanteNombreAndSolicitanteApellido(nombre, apellido);
+    public List<recibo> findByDatosPersonales(String datosPersonales) {
+        return  rcr.findByDatosPersonales(datosPersonales);
     }
+
 
     @Override
     public List<recibo> buscarPorRecibo(String numeroR) {

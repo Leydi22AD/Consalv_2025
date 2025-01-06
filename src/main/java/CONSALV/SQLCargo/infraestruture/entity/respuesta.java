@@ -11,10 +11,6 @@ public class respuesta {
     @Column(name = "idR")
     private Integer idR;
 
-    @ManyToOne
-    @JoinColumn(name = "idEx", referencedColumnName = "idEx", nullable = false)
-    private expediente expediente;
-
     @Column(name = "carta", length = 100)
     private String carta;
     @Column(name = "rutaC", length = 100)
@@ -27,14 +23,6 @@ public class respuesta {
 
     public void setIdR(Integer idR) {
         this.idR = idR;
-    }
-
-    public expediente getExpediente() {
-        return expediente;
-    }
-
-    public void setExpediente(expediente expediente) {
-        this.expediente = expediente;
     }
 
     public String getCarta() {

@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface ReciboRepository {
   
-  List<recibo> findBySolicitanteNombreAndSolicitanteApellido(String nombre, String apellido);
+
+  List<recibo> findByDatosPersonales(String datosPersonales);
   public List<recibo> buscarPorRecibo(String numeroR);  
 }
