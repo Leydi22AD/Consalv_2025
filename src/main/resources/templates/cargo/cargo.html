@@ -74,7 +74,8 @@
                         <th>Celular </th>
                         <th>Solicito </th>
                         <th>Número de Expediente</th>
-                        <th>Respuesta</th>
+                        <th>Resolucion</th>
+                        <th>Constancia</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -87,8 +88,13 @@
                         <td th:text="${expediente.solicitante.solicito}"></td>
                         <td><a th:href="${expediente.rutaEx}" th:text="${expediente.numeroEx}"></a></td>
                         <td>
-                            <a th:text="${expediente.respuesta.carta}" th:href="${expediente.respuesta.rutaC}"></a>
+                            <a th:text="${expediente.respuesta.resolucion}" th:href="${expediente.respuesta.rutaRe}"></a>
+                        </td>  
+                        <td>
+                            <a th:text="${expediente.respuesta.constancia}" th:href="${expediente.respuesta.rutaC}"></a>
                         </td>
+                           
+                       
                     </tr>
                 </tbody>
             </table>

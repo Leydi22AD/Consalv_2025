@@ -11,10 +11,18 @@ public class respuesta {
     @Column(name = "idR")
     private Integer idR;
 
-    @Column(name = "carta", length = 100)
-    private String carta;
+    @Column(name = "resolucion", length = 50)
+    private String resolucion;
+    @Column(name = "rutaRe", length = 100)
+    private String rutaRe;
+
+   
+    @Column(name = "constancia", length = 50)
+    private String constancia;
     @Column(name = "rutaC", length = 100)
     private String rutaC;
+
+   
 
     // Getters and Setters
     public Integer getIdR() {
@@ -25,12 +33,28 @@ public class respuesta {
         this.idR = idR;
     }
 
-    public String getCarta() {
-        return carta;
+    public String getResolucion() {
+        return resolucion;
     }
 
-    public void setCarta(String carta) {
-        this.carta = carta;
+    public void setResolucion(String resolucion) {
+        this.resolucion = resolucion;
+    }
+
+    public String getRutaRe() {
+        return rutaRe;
+    }
+
+    public void setRutaRe(String rutaRe) {
+        this.rutaRe = rutaRe;
+    }
+
+    public String getConstancia() {
+        return constancia;
+    }
+
+    public void setConstancia(String constancia) {
+        this.constancia = constancia;
     }
 
     public String getRutaC() {
@@ -40,4 +64,7 @@ public class respuesta {
     public void setRutaC(String rutaC) {
         this.rutaC = rutaC;
     }
+
+ 
+   
 }
