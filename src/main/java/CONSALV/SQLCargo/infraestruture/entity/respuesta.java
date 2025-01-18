@@ -11,7 +11,7 @@ public class respuesta {
     @Column(name = "idR")
     private Integer idR;
 
-    @Column(name = "resolucion", length = 50)
+    @Column(name = "resolucion", length = 80)
     private String resolucion;
     @Column(name = "rutaRe", length = 100)
     private String rutaRe;
