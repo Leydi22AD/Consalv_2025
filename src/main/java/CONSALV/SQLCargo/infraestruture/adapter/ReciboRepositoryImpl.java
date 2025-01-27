@@ -13,16 +13,15 @@ public class ReciboRepositoryImpl implements ReciboRepository{
     public ReciboRepositoryImpl(ReciboCrudRepository rcr) {
         this.rcr = rcr;
     }
-
     @Override
-    public List<recibo> findByDatosPersonales(String datosPersonales) {
-        return  rcr.findByDatosPersonales(datosPersonales);
+    public List<recibo> findByDatosPersonalesContainingIgnoreCase(String datosPersonales) {
+       return  rcr.findByDatosPersonalesContainingIgnoreCase(datosPersonales);
     }
 
-
     @Override
-    public List<recibo> buscarPorRecibo(String numeroR) {
-        return rcr.findByNumeroR(numeroR);
+    public List<recibo> findByNumeroRContainingIgnoreCase(String numeroR) {
+      return rcr.findByNumeroRContainingIgnoreCase(numeroR);
     }
+
    
 }

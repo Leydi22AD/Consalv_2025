@@ -7,6 +7,9 @@ import java.util.List;
 public interface ReciboRepository {
   
 
-  List<recibo> findByDatosPersonales(String datosPersonales);
-  public List<recibo> buscarPorRecibo(String numeroR);  
+  // Método para buscar por fragmentos de datosPersonales (sin distinguir entre mayúsculas y minúsculas)
+    List<recibo> findByDatosPersonalesContainingIgnoreCase(String datosPersonales);
+
+    // Método para buscar por fragmentos del número de recibo
+    List<recibo> findByNumeroRContainingIgnoreCase(String numeroR);
 }

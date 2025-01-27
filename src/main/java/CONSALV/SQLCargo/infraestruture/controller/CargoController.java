@@ -149,11 +149,10 @@ public class CargoController {
     public String recibo(){
         return "/cargo/recibo";
     }
-        
-    @PostMapping("/buscar-recibo-nombre")
+   @PostMapping("/buscar-recibo-nombre")
 public String buscarRecibos(@RequestParam("datosPersonales") String datosPersonales,
                                  Model model) {
-    List<recibo> recibos = rs.findByDatosPersonales(datosPersonales);
+    List<recibo> recibos = rs.findByDatosPersonalesContainingIgnoreCase(datosPersonales);
     model.addAttribute("recibos", recibos); // Asegúrate de que el nombre sea 'expedientes'
       if (datosPersonales.isEmpty() ) {
     model.addAttribute("error", "Por favor, complete todos los campos.");}
@@ -166,7 +165,7 @@ public String buscarRecibos(@RequestParam("datosPersonales") String datosPersona
             return "/cargo/partida";
         }
 
-        List<recibo> recibos = rs.buscarPorRecibo(numeroR);
+        List<recibo> recibos = rs.findByNumeroRContainingIgnoreCase(numeroR);
         if (recibos.isEmpty()) {
             model.addAttribute("error", "No se encontraron partidas con el número especificado.");
         }

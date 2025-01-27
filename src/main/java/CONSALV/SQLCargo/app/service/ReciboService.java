@@ -12,10 +12,12 @@ public class ReciboService {
         this.rre = rre;
     }
     
-   public List<recibo> findByDatosPersonales(String datosPersonales){
-          return rre.findByDatosPersonales(datosPersonales);
+ 
+          // Método para buscar por fragmentos de datosPersonales (sin distinguir entre mayúsculas y minúsculas)
+  public List<recibo> findByDatosPersonalesContainingIgnoreCase(String datosPersonales){
+          return rre.findByDatosPersonalesContainingIgnoreCase(datosPersonales);
       }
-  public List<recibo> buscarPorRecibo(String numeroR){
-      return rre.buscarPorRecibo(numeroR);
+  public   List<recibo> findByNumeroRContainingIgnoreCase(String numeroR){
+      return rre.findByNumeroRContainingIgnoreCase(numeroR);
         } 
 }
