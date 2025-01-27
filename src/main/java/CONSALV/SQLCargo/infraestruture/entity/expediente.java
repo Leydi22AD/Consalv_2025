@@ -19,7 +19,7 @@ public class expediente {
     private String numeroEx;
     @Column(name = "rutaEx", length = 100)
     private String rutaEx;
-    @Column(name = "observaciones", length = 100)
+    @Column(name = "observaciones", length = 150)
     private String observaciones;
 
     @ManyToOne

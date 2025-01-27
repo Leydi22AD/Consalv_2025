@@ -17,11 +17,11 @@ public class recibo {
     private Integer idR;
     @Column(name = "fecha", length = 15)
     private String fecha;
- @Column(name = "datosPersonales", length = 60)
+ @Column(name = "datosPersonales", length = 160)
     private String datosPersonales;
-    @Column(name = "telefono", length = 13)
+    @Column(name = "telefono", length = 33)
     private String telefono;
-    @Column(name = "asunto", length = 80)
+    @Column(name = "asunto", length = 180)
     private String asunto;
 
     @Column(name = "numeroR", length = 10)
