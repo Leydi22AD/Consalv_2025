@@ -59,14 +59,13 @@
     <tbody>
         <tr th:each="recibo : ${recibos}">
             <td th:text="${recibo.datosPersonales}"></td>
-            <td><a th:text="${recibo.numeroR}" th:href="${recibo.rutaR}"></a></td>
+            <td><a th:text="${recibo.numeroR}" th:href="${recibo.rutaR}" target="_blank"></a></td>
             <td th:text="${recibo.fecha}"></td>
             <td th:text="${recibo.telefono}"></td>
             <td th:text="${recibo.asunto}"></td>
             <td th:text="${recibo.importe}"></td>
             <td th:text="${recibo.saldo}"></td>
             <td th:text="${recibo.observaciones}"></td>
-            <td><a th:text="${recibo.rutaR}" th:href="${recibo.rutaR}">Ver Recibo</a></td>
         </tr>
     </tbody>
 </table>
